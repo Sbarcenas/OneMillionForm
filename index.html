@@ -15,6 +15,7 @@
 			  background : #FFF;
 			  display  : flex;
 			  flex-direction: column;
+			  justify-content: center;
 		
 		}
 
@@ -267,7 +268,7 @@
 
 			}catch (e) {
 				error.innerHTML = ''
-				error.innerHTML = e.message
+				error.innerHTML = ((e.response||{}).data || {}).message
 				error.hidden = false
 				throw e
 			}
