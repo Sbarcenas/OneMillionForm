@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; utf-8">
+	<meta charset=UTF-8>
+	<title>Formulario</title>
+	<style type="text/css">
+
+		.form {
+			  min-height: 517px;
+			  position : relative;
+			  width  : 100%;
+			  margin : 0 auto;
+			  padding: 1em;
+			  box-sizing: border-box;
+			  background : #FFF;
+			  display  : flex;
+			  flex-direction: column;
+		
+		}
+
+		.form__section {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.form__label {
+			font-family: sans-serif;
+		}
+
+		.form__input {
+			-moz-appearance: none; 
+			-webkit-appearance: none; 
+			appearance: none;
+			box-sizing: border-box;
+			width: 100%;
+			margin: 0 0 .9rem;
+			padding: .6rem;
+			background: #fff;
+			border: 1px solid #bbb;
+			box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05);
+			outline: none;
+			resize: vertical;
+			transition: border-color .3 ease;
+			color: #000;
+			font-size: 100%;
+			line-height: 1.15;
+		}
+
+		.form__input:focus, .form__select:focus  {
+			border-color: #17f;
+		}
+
+		.form__input::placeholder {
+		  color: #999;
+		  opacity: 1;
+		}
+
+		.form__select {
+			-moz-appearance: none; 
+			-webkit-appearance: none; 
+			appearance: none;
+			box-sizing: border-box;
+			width: 100%;
+			margin: 0 0 .9rem;
+			padding: .6rem;
+			border: 1px solid #bbb;
+			box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05);
+			padding-right: calc(#{ .6rem + .6rem/2 } + #{ 12px });
+			transition: border-color .3 ease;
+			color: #000;
+			font-family: sans-serif;
+			font-size: 100%;
+			line-height: 1.15;
+		} 	
+
+		.nit__container {
+			display: flex
+		}
+
+		.nit__container--nit {
+			margin-right: 10px;
+			flex:1;
+
+		}
+
+		.nit__container--dv{
+			width: 40px
+		}
+
+		.btn-file {
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			background-color: #17f !important;
+			padding: 9px;
+			border-color:#17f;
+			color: #fff;
+			width: 120px;
+			height: 40px;
+			border-radius: 1%;
+			align-self: center;
+			padding: 1px !important
+        }
+
+
+		.form__name {
+        	display: flex;
+        	justify-content: space-between;
+        }
+
+        .form__first-name {
+        	margin-right: 10px;
+        	flex:1;
+        	width: 100%;
+        }
+         .form__last-name {
+        	margin-left: 10px;
+        	flex:1;
+        	width: 100%;
+
+        }
+
+        .alert-danger {
+		    color: #721c24;
+		    background-color: #f8d7da;
+		    border-color: #f5c6cb;
+		}
+
+		.alert {
+		    position: relative;
+		    padding: .75rem 1.25rem;
+		    margin-bottom: 1rem;
+		    border: 1px solid transparent;
+		    border-radius: .25rem;
+		}
+
+		.success-main {
+			height: 30px;
+			display: flex;
+			width: 100%;
+			justify-content: center; 
+			align-items:center;
+			flex-direction: column;
+		}
+
+        @media (max-width: 600px) {
+        	.form__name {
+        		display: flex;
+        		flex-direction: column;
+        	}
+
+       		 .form__first-name {
+        		margin-right: 0;
+        		width: 100%;
+        	}
+         	.form__last-name {
+        		margin-left: 0;
+        		width: 100%;
+        	}
+
+		}
+
+	</style>
+</head>
+<body>
+	<div id="main">
+		<form id="form" class="form">
+			<div class="form__name">
+				<div class="form__section form__first-name">
+				<label class="form__label" for="first_name">Nombre</label>
+				<input class="form__input" id="first_name" name="first_name" required minlength='5' maxlength='30' >
+			</div>
+			<div class="form__section form__last-name">
+				<label class="form__label" for="last_name">Apellido</label>
+				<input class="form__input" id="last_name" name="last_name" required minlength='5' maxlength='30' >
+
+			</div>
+			</div>
+
+			<div class="form__section form__state">
+				<label class="form__label" for="state">Departamento</label>
+				<select class="form__select" name="state" id="state" required>
+				  <option value="" disabled selected>Seleccione un departamento...</option>
+				
+				</select>
+			</div>
+
+			<div class="form__section form__city">
+				<label class="form__label" for="city">Ciudad</label>
+				<select class="form__select" name="city" id="city" required>
+				  <option value="" disabled selected>Debe seleccionar un departamento...</option>
+				
+				</select>
+			</div>
+			<div class="form__section form__email">
+				<label class="form__label" for="email">Email</label>
+				<input  type="email" class="form__input" id="email" name="email" required minlength='5' >
+
+			</div>
+			<div class="form__section form__employes">
+				<label class="form__label" for="employes_number">Número de empleados</label>
+				<input  type='number' class="form__input" id="employes" name="employes" required minlength='5'  min="0">
+
+			</div>
+			<div class="form__section form_nit">
+				<label class="form__label" for="nit">NIT - DV</label>
+				<div class="nit__container">
+					<input class="form__input nit__container--nit" id="nit" name="nit" required minlength='9' maxlength='9' >
+					<input class="form__input nit__container--dv" id="nit_dv" name="nit_dv" required minlength='1' maxlength='1' >
+				</div>
+			</div>
+		
+			<div class="form__section form__social">
+				<label class="form__label" for="social_reason">Razón social</label>
+				<input class="form__input" id="social_reason" name="social_reason" required minlength='5' maxlength='30'>
+			</div>
+			<div class="alert alert-danger" id='error' hidden></div>
+			<input class="btn-file" type="submit" name="submit" id="submit" value="Enviar">
+		</form>
+
+		<div id="success"  hidden>
+			<div class="success-main" >
+				<h2>¡Gracias!</h2>
+				<p>¡Nos pondremos en contacto contigo tan pronto sea posible!</p>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script>
+
+		axios.defaults.baseURL = 'https://api.adelantalaprima.com/';
+		axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+		const form = document.querySelector('#form');
+		const first_name = document.querySelector('#first_name');
+		const last_name = document.querySelector('#last_name');
+		const city = document.querySelector('#city');
+		const states = document.querySelector('#state');
+		const email = document.querySelector('#email');
+		const employes = document.querySelector('#employes');
+		const nit = document.querySelector('#nit');
+		const nitdv = document.querySelector('#nit_dv');
+		const social_reason = document.querySelector('#social_reason');
+		const submit = document.querySelector('#submit');
+		const error = document.querySelector('#error');
+		const success = document.querySelector('#success')
+
+
+		async function sendForm(){
+			try{
+				error.hidden = true
+				await axios.post('forms', {
+				first_name: first_name.value,
+				last_name: last_name.value,
+				city_id: parseInt(city.options[city.selectedIndex].value),
+				email: email.value,
+				company_name: social_reason.value,
+				employes_number: parseInt(employes.value),
+				nit: nit.value,
+				nit_dv: nitdv.value
+				})
+
+				success.setAttribute('class','form')
+				success.hidden = false
+				form.removeAttribute('class')
+				form.hidden = true
+
+
+			}catch (e) {
+				error.innerHTML = ''
+				error.innerHTML = e.message
+				error.hidden = false
+				throw e
+			}
+			
+		}
+
+
+		async function getStates() {
+			try {
+				const res = await axios.get('states/', {params:{$limit:100, '$sort[name]':1}});
+				(res.data||{}).data.map(el=>({label: el.name, value: el.id})).map(opt => addOption(states, opt))
+			} catch(e) {
+				throw e
+			}
+		}
+
+		async function getCities(state_id) {
+			try {
+				city.innerHTML = city.firstChild.innerHTML;
+				const res = await axios.get('cities/', {params:{$limit:100, '$sort[name]':1, state_id}});
+				[{id:null, name:'Seleccione una ciudad...', disabled:true},...(res.data||{}).data]
+				.map(el=>({label: el.name, value: el.id, disabled:el.disabled}))
+				.map(opt => addOption(city, opt));
+			} catch(e) {
+				throw e
+			}
+		}
+
+		const addOption = (node, {label, value, disabled}) => {
+			const newOption = document.createElement('option');
+			const optionText = document.createTextNode(label);
+			newOption.appendChild(optionText);
+			newOption.setAttribute('value', value);
+			if(disabled){ 
+				newOption.setAttribute('disabled', disabled)
+				newOption.setAttribute('selected', disabled)
+			}
+			node.appendChild(newOption);
+		}
+
+
+		//Elements events.
+		form.onsubmit = e => {
+			e.preventDefault();
+			sendForm()
+		}
+
+		states.onchange = e => {
+			getCities(parseInt(states.options[states.selectedIndex].value))
+		}
+
+
+		// Start the app process getting all the states.
+		getStates();
+
+
+
+	</script>
+</body>
+</html>
