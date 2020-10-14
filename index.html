@@ -165,16 +165,12 @@
 <body>
 	<div id="main">
 		<form id="form" class="form">
+
 			<div class="form__name">
 				<div class="form__section form__first-name">
-				<label class="form__label" for="first_name">Nombre</label>
-				<input class="form__input" id="first_name" name="first_name" required minlength='5' maxlength='30' >
-			</div>
-			<div class="form__section form__last-name">
-				<label class="form__label" for="last_name">Apellido</label>
-				<input class="form__input" id="last_name" name="last_name" required minlength='5' maxlength='30' >
-
-			</div>
+					<label class="form__label" for="name">Nombre</label>
+					<input class="form__input" id="name" name="name" required minlength='5' maxlength='30' >
+				</div>
 			</div>
 
 			<div class="form__section form__state">
@@ -198,22 +194,18 @@
 
 			</div>
 			<div class="form__section form__employes">
-				<label class="form__label" for="employes_number">Número de empleados</label>
+				<label class="form__label" for="employes_number">Número de empleados a beneficiar</label>
 				<input  type='number' class="form__input" id="employes" name="employes" required minlength='5'  min="0">
 
 			</div>
 			<div class="form__section form_nit">
-				<label class="form__label" for="nit">NIT - DV</label>
+				<label class="form__label" for="nit">NIT - CC.</label>
 				<div class="nit__container">
 					<input class="form__input nit__container--nit" id="nit" name="nit" required minlength='9' maxlength='9' >
 					<input class="form__input nit__container--dv" id="nit_dv" name="nit_dv" required minlength='1' maxlength='1' >
 				</div>
 			</div>
 		
-			<div class="form__section form__social">
-				<label class="form__label" for="social_reason">Razón social</label>
-				<input class="form__input" id="social_reason" name="social_reason" required minlength='5' maxlength='30'>
-			</div>
 			<div class="alert alert-danger" id='error' hidden></div>
 			<input class="btn-file" type="submit" name="submit" id="submit" value="Enviar">
 		</form>
@@ -232,15 +224,13 @@
 		axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 		const form = document.querySelector('#form');
-		const first_name = document.querySelector('#first_name');
-		const last_name = document.querySelector('#last_name');
+		const name = document.querySelector('#name');
 		const city = document.querySelector('#city');
 		const states = document.querySelector('#state');
 		const email = document.querySelector('#email');
 		const employes = document.querySelector('#employes');
 		const nit = document.querySelector('#nit');
 		const nitdv = document.querySelector('#nit_dv');
-		const social_reason = document.querySelector('#social_reason');
 		const submit = document.querySelector('#submit');
 		const error = document.querySelector('#error');
 		const success = document.querySelector('#success')
@@ -250,11 +240,9 @@
 			try{
 				error.hidden = true
 				await axios.post('forms', {
-				first_name: first_name.value,
-				last_name: last_name.value,
+				name: name.value,
 				city_id: parseInt(city.options[city.selectedIndex].value),
 				email: email.value,
-				company_name: social_reason.value,
 				employes_number: parseInt(employes.value),
 				nit: nit.value,
 				nit_dv: nitdv.value
