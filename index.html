@@ -168,8 +168,8 @@
 
 			<div class="form__name">
 				<div class="form__section form__first-name">
-					<label class="form__label" for="name">Nombre</label>
-					<input class="form__input" id="name" name="name" required minlength='5' maxlength='30' >
+					<label class="form__label" for="first_name">Nombre</label>
+					<input class="form__input" id="first_name" name="first_name" required minlength='5' maxlength='30' >
 				</div>
 			</div>
 
@@ -201,8 +201,8 @@
 			<div class="form__section form_nit">
 				<label class="form__label" for="nit">NIT - CC.</label>
 				<div class="nit__container">
-					<input class="form__input nit__container--nit" id="nit" name="nit" required minlength='9' maxlength='9' >
-					<input class="form__input nit__container--dv" id="nit_dv" name="nit_dv" required minlength='1' maxlength='1' >
+					<input class="form__input nit__container--nit" id="nit" name="nit" required minlength='9' maxlength='10' >
+					<input class="form__input nit__container--dv" id="nit_dv" name="nit_dv" minlength='1' maxlength='1' >
 				</div>
 			</div>
 		
@@ -224,7 +224,7 @@
 		axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 		const form = document.querySelector('#form');
-		const name = document.querySelector('#name');
+		const first_name = document.querySelector('#first_name');
 		const city = document.querySelector('#city');
 		const states = document.querySelector('#state');
 		const email = document.querySelector('#email');
@@ -240,12 +240,14 @@
 			try{
 				error.hidden = true
 				await axios.post('forms', {
-				name: name.value,
+				first_name: first_name.value,
+				last_name:' ',
 				city_id: parseInt(city.options[city.selectedIndex].value),
 				email: email.value,
 				employes_number: parseInt(employes.value),
 				nit: nit.value,
-				nit_dv: nitdv.value
+				nit_dv: nitdv.value || "0",
+				company_name:' '
 				})
 
 				success.setAttribute('class','form')
