@@ -226,6 +226,7 @@
 		const submit = document.querySelector('#submit');
 		const error = document.querySelector('#error');
 		const success = document.querySelector('#success')
+		let selected_city = 0
 
 
 		async function sendForm(){
@@ -234,7 +235,7 @@
 				await axios.post('forms', {
 				first_name: first_name.value,
 				last_name:' ',
-				city_id: parseInt(city.options[city.selectedIndex].value),
+				city_id:  selected_city, //parseInt(city.options[city.selectedIndex].value) ||
 				email: email.value,
 				employes_number: parseInt(employes.value),
 				nit: nit.value,
@@ -298,8 +299,11 @@
 			sendForm()
 		}
 
-		states.onchange = e => {
-			getCities(parseInt(states.options[states.selectedIndex].value))
+		states.onchange = async e => {
+			const selected_state = states.options[states.selectedIndex].value;
+			const res = await axios.get('cities/', {params:{$limit:100, '$sort[name]':1, state_id:selected_state}});
+			selected_city = res.data.data[0].id
+			//getCities(parseInt(states.options[states.selectedIndex].value))
 		}
 
 
